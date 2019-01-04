@@ -15,6 +15,8 @@ module.exports = (app,fs) => {
             console.log(items);
             if(!error){
                 res.json({tracks:items,status:200})
+            }else{
+                res.json({error:error})
             }
         });
     });
