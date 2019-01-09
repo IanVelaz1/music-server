@@ -1,7 +1,9 @@
 const path = require("path");
 const url = require("url");
 const ms=require("mediaserver");
-module.exports = (app,fs) => {
+
+
+module.exports = (app,fs,upload) => {
 
     app.get("/track/:id", (req, res) => {
         const id=req.params.id;
@@ -20,6 +22,12 @@ module.exports = (app,fs) => {
             }
         });
     });
+
+    app.post("/tracks",upload.single("file"),(req,res)=>{
+        let files=req.file;
+        console.log(files);
+    });
+
 }
 /*
     app.get('/track/:id',(req,res)=>{
