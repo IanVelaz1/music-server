@@ -5,10 +5,15 @@ const express = require("express"),
     helmet = require("helmet"),
     fs = require("fs"),
     fileUpload=require("express-fileupload"),
-    multer=require("multer");
+    multer=require("multer"),
+    morgan=require("morgan"),
+    mongoose=require("mongoose"),
+    db=require("./config/config.js");
 const upload=multer({dest:"music/"});
 const port = process.env.PORT || 8000;
 
+mongoose.connect(db.db,{useNewUrlParser:true});
+mongoose.Promise=global.Promise;
 
 ///middlewares
 app.use(cors());
@@ -18,10 +23,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(helmet());
+app.use(morgan("dev"));
 
 
 ///routes
-require("./routes/musicRoutes")(app, fs,upload);
+require("./musicRoutes")(app, fs,upload);
 
 
 
