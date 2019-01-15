@@ -2,8 +2,16 @@ const mongoose=require("mongoose");
 
 const songsSchema=new mongoose.Schema({
     songName:"",
-    songArtist:"",
-    songUrl:""
+    songArtist:{
+      type:Object,
+      default:{}
+    },
+    songUrl:"",
+    songAlbum:{
+      type:Object,
+      default:{}
+    },
+    songImage:""
 });
 
 let Song=module.exports=mongoose.model("songs",songsSchema);

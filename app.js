@@ -28,8 +28,9 @@ app.use(morgan("dev"));
 
 ///routes
 require("./musicRoutes")(app, fs,upload);
-
-
+require("./routes/albumsRoutes")(app);
+require("./routes/artistsRoutes")(app);
+require("./routes/usersRoutes")(app);
 
 app.listen(port, (error, success) => {
     console.log("app conectada en puerto: " + port);

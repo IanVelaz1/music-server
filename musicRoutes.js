@@ -60,7 +60,7 @@ module.exports = (app,fs,upload) => {
     app.get("/song",(req,res)=>{
         Song.recoverSongs({},(error,songs)=>{
             if(error){
-                res.status(404).json({error:error,msg:"error saving song"});
+                res.status(404).json({error:error,msg:"error recovering song"});
             }else{
                 res.status(200).json({success:true,songs});
             }
