@@ -18,7 +18,7 @@ module.exports = (app) => {
         });
     });
 
-    app.get("/users/mail/:mail", (req, res) => {
+    app.post("/users/mail/:mail", (req, res) => {
         const mail = req.params.mail;
         User.findUserByEmail(mail, (error, user) => {
             if (error) {
@@ -27,10 +27,14 @@ module.exports = (app) => {
                     msg: "error recovering user"
                 });
             } else {
-                res.status(200).json({
-                    success: true,
-                    user
-                });
+                console.log(user);
+                
+                if(req.body.userPassword===user[0].userPassword){
+                    res.status(200).json({
+                        success: true,
+                        user
+                    });
+                }
             }
         });
     });

@@ -2,13 +2,9 @@ const mongoose=require("mongoose");
 
 const albumsSchema=new mongoose.Schema({
     albumName:"",
-    albumArstist:{
+    albumArtist:{
         type:Object,
         default:{}
-    },
-    albumSongs:{
-        type:Array,
-        default:[]
     },
     albumImage:""
 });

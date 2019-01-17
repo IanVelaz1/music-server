@@ -11,6 +11,17 @@ module.exports=(app)=>{
         });
     });
 
+    app.post("/artists",(req,res)=>{
+      const artist=req.body;
+      Artist.createArtist(artist,(error,artist)=>{
+        if(error){
+            res.status(400).json({error:error,msg:"error creating artist"});
+          }else{
+            res.status(200).json({success:true,artist});
+          }
+      });
+    });
+
     app.get("/artists/:id",(req,res)=>{
         const id=req.params.id;
         Artist.findArtistById(id,(error,artist)=>{

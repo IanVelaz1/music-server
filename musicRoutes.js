@@ -43,9 +43,9 @@ module.exports = (app,fs,upload) => {
             let songObject={
                 songName:req.body.songName,
                 songArtist:req.body.songArtist,
+                songAlbum:req.body.songAlbum,
                 songUrl:req.body.songUrl
             }
-            console.log(songObject);
             
             Song.saveSong(songObject,(error,succes)=>{
                 if(error){

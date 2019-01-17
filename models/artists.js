@@ -3,7 +3,6 @@ const mongoose=require("mongoose");
 const artistSchema=new mongoose.Schema({
    artistName:"",
    artistAlbums:[],
-   artistSongs:[],
    artistImage:"" 
 });
 
