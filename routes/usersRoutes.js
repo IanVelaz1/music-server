@@ -27,14 +27,19 @@ module.exports = (app) => {
                     msg: "error recovering user"
                 });
             } else {
-                console.log(user);
                 
-                if(req.body.userPassword===user[0].userPassword){
+                if(user[0]){ if(req.body.userPassword===user[0].userPassword){
                     res.status(200).json({
                         success: true,
                         user
                     });
+                }}else{
+                    res.status(400).json({
+                        error: error,
+                        msg: "wrong password"
+                    });
                 }
+               
             }
         });
     });

@@ -66,6 +66,23 @@ module.exports = (app,fs,upload) => {
             }
         });
     })
+
+    app.get("/song/album/:id",(req,res)=>{
+        let albumId=req.params.id;
+        let albumSongs=[];
+        Song.recoverSongs({},(error,songs)=>{
+            if(error){
+                res.status(404).json({error:error,msg:"error recovering song"});
+            }else{
+                for(song of songs){
+                  if(song.songAlbum._id===albumId){
+                      albumSongs.unshift(song);
+                  }
+                }
+                res.status(200).json({success:true,albumSongs});
+            }
+        });
+    })
     
 
 }
